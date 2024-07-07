@@ -2,7 +2,8 @@ program Cliente;
 
 uses
   Vcl.Forms,
-  UConsultaEnderecos in 'UConsultaEnderecos.pas' {fConsultaEnderecos};
+  UConsultaEnderecos in 'UConsultaEnderecos.pas' {fConsultaEnderecos},
+  UDSClienteMethods in 'UDSClienteMethods.pas';
 
 {$R *.res}
 

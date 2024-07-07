@@ -127,6 +127,7 @@
             <Form>fConsultaEnderecos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UDSClienteMethods.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -1110,6 +1111,9 @@
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">True</Platform>
             </Platforms>
+            <DataSnapProxyLookup>
+                <UDSClienteMethods>{241E0DB2-A8AC-4827-BC49-454BB0C5F24E}</UDSClienteMethods>
+            </DataSnapProxyLookup>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>

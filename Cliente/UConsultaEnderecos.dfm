@@ -131,5 +131,35 @@ object fConsultaEnderecos: TfConsultaEnderecos
     Align = alClient
     TabOrder = 1
     ExplicitTop = 127
+    object mmResultado: TMemo
+      Left = 1
+      Top = 1
+      Width = 782
+      Height = 430
+      Align = alClient
+      TabOrder = 0
+      ExplicitLeft = 416
+      ExplicitTop = 216
+      ExplicitWidth = 185
+      ExplicitHeight = 89
+    end
+  end
+  object SQLConnection: TSQLConnection
+    DriverName = 'DataSnap'
+    LoginPrompt = False
+    Params.Strings = (
+      'DriverUnit=Data.DBXDataSnap'
+      'HostName=localhost'
+      'Port=211'
+      'CommunicationProtocol=tcp/ip'
+      'DatasnapContext=datasnap/'
+      
+        'DriverAssemblyLoader=Borland.Data.TDBXClientDriverLoader,Borland' +
+        '.Data.DbxClientDriver,Version=24.0.0.0,Culture=neutral,PublicKey' +
+        'Token=91d62ebb5b0d1b1b')
+    Connected = True
+    Left = 48
+    Top = 193
+    UniqueId = '{241E0DB2-A8AC-4827-BC49-454BB0C5F24E}'
   end
 end
