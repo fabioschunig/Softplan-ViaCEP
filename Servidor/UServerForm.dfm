@@ -16,6 +16,7 @@ object fServerForm: TfServerForm
     Top = 56
   end
   object DSServerClass: TDSServerClass
+    OnGetClass = DSServerClassGetClass
     Server = DSServer
     Left = 96
     Top = 120
