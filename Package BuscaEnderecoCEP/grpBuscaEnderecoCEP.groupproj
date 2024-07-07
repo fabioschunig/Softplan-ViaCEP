@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{038161F2-E2E4-4755-BF57-0111A50305C3}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="dclBuscaEnderecoCEP.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="testBuscaEnderecoCEP.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="dclBuscaEnderecoCEP">
+        <MSBuild Projects="dclBuscaEnderecoCEP.dproj"/>
+    </Target>
+    <Target Name="dclBuscaEnderecoCEP:Clean">
+        <MSBuild Projects="dclBuscaEnderecoCEP.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dclBuscaEnderecoCEP:Make">
+        <MSBuild Projects="dclBuscaEnderecoCEP.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="testBuscaEnderecoCEP">
+        <MSBuild Projects="testBuscaEnderecoCEP.dproj"/>
+    </Target>
+    <Target Name="testBuscaEnderecoCEP:Clean">
+        <MSBuild Projects="testBuscaEnderecoCEP.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="testBuscaEnderecoCEP:Make">
+        <MSBuild Projects="testBuscaEnderecoCEP.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="dclBuscaEnderecoCEP;testBuscaEnderecoCEP"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="dclBuscaEnderecoCEP:Clean;testBuscaEnderecoCEP:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="dclBuscaEnderecoCEP:Make;testBuscaEnderecoCEP:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
