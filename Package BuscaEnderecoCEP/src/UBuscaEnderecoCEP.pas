@@ -7,6 +7,13 @@ uses
   IdHTTP, IdSSLOpenSSL,
   NetEncoding;
 
+resourcestring
+  RS_MSG_ERRO_CEP_TAMANHO = 'CEP deve ter 8 caracteres';
+  RS_MSG_ERRO_CEP_INVALIDO = 'CEP não possui um formato válido: %s';
+  RS_MSG_ERRO_UF_TAMANHO = 'UF deve ter 2 caracteres';
+  RS_MSG_ERRO_CIDADE_TAMANHO = 'Cidade deve ter no mínimo 3 caracteres';
+  RS_MSG_ERRO_ENDERECO_TAMANHO = 'Endereço deve ter no mínimo 3 caracteres';
+
 type
   TFormatoResultado = (frJSON, frXML);
 
@@ -84,10 +91,9 @@ begin
   result := '';
 
   if (Length(Trim(CEP)) <> 8) then
-    result := 'CEP deve ter 8 caracteres';
-
-  if not TryStrToInt(CEP, v) then
-    result := 'CEP não possui um formato válido: ' + CEP;
+    result := RS_MSG_ERRO_CEP_TAMANHO
+  else if not TryStrToInt(CEP, v) then
+    result := Format(RS_MSG_ERRO_CEP_INVALIDO, [CEP]);
 
   if (result <> '') then
     FbErro := True;
@@ -99,13 +105,11 @@ begin
   result := '';
 
   if (Length(Trim(UF)) <> 2) then
-    result := 'CEP deve ter 2 caracteres';
-
-  if (Length(Trim(Cidade)) < 3) then
-    result := 'Cidade deve ter no mínimo 3 caracteres';
-
-  if (Length(Trim(Endereco)) < 3) then
-    result := 'Endereço deve ter no mínimo 3 caracteres';
+    result := RS_MSG_ERRO_UF_TAMANHO
+  else if (Length(Trim(Cidade)) < 3) then
+    result := RS_MSG_ERRO_CIDADE_TAMANHO
+  else if (Length(Trim(Endereco)) < 3) then
+    result := RS_MSG_ERRO_ENDERECO_TAMANHO;
 
   if (result <> '') then
     FbErro := True;

@@ -6,6 +6,9 @@
         <Projects Include="dclBuscaEnderecoCEP.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="testBuscaEnderecoCEP.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -23,14 +26,23 @@
     <Target Name="dclBuscaEnderecoCEP:Make">
         <MSBuild Projects="dclBuscaEnderecoCEP.dproj" Targets="Make"/>
     </Target>
+    <Target Name="testBuscaEnderecoCEP">
+        <MSBuild Projects="testBuscaEnderecoCEP.dproj"/>
+    </Target>
+    <Target Name="testBuscaEnderecoCEP:Clean">
+        <MSBuild Projects="testBuscaEnderecoCEP.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="testBuscaEnderecoCEP:Make">
+        <MSBuild Projects="testBuscaEnderecoCEP.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="dclBuscaEnderecoCEP"/>
+        <CallTarget Targets="dclBuscaEnderecoCEP;testBuscaEnderecoCEP"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="dclBuscaEnderecoCEP:Clean"/>
+        <CallTarget Targets="dclBuscaEnderecoCEP:Clean;testBuscaEnderecoCEP:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="dclBuscaEnderecoCEP:Make"/>
+        <CallTarget Targets="dclBuscaEnderecoCEP:Make;testBuscaEnderecoCEP:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
