@@ -29,7 +29,10 @@ package dclBuscaEnderecoCEP;
 {$IMPLICITBUILD ON}
 
 requires
-  rtl;
+  rtl,
+  IndySystem,
+  IndyProtocols,
+  IndyCore;
 
 contains
   UBuscaEnderecoCEP in 'src\UBuscaEnderecoCEP.pas';
