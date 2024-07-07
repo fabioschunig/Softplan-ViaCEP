@@ -2,7 +2,8 @@ program Servidor;
 
 uses
   Vcl.Forms,
-  UServerForm in 'UServerForm.pas' {fServerForm};
+  UServerForm in 'UServerForm.pas' {fServerForm},
+  UServerMethods in 'UServerMethods.pas';
 
 {$R *.res}
 

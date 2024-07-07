@@ -127,6 +127,7 @@
             <Form>fServerForm</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UServerMethods.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
