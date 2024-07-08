@@ -1,6 +1,6 @@
 //
 // Created by the DataSnap proxy generator.
-// 08/07/2024 14:44:32
+// 08/07/2024 17:03:18
 //
 
 unit UDSClienteMethods;
@@ -19,7 +19,7 @@ type
     constructor Create(ADBXConnection: TDBXConnection; AInstanceOwner: Boolean); overload;
     destructor Destroy; override;
     function ConsultaCEP(CEP: string; var DadosArmazenados: Boolean; AtualizarDados: Boolean; Formato: string): string;
-    function ConsultaEndereco(UF: string; Cidade: string; Endereco: string; var DadosArmazenados: Boolean; AtualizarDados: Boolean; Formato: string): string;
+    function ConsultaEndereco(UF: string; Localidade: string; Logradouro: string; var DadosArmazenados: Boolean; AtualizarDados: Boolean; Formato: string): string;
   end;
 
 implementation
@@ -42,7 +42,7 @@ begin
   Result := FConsultaCEPCommand.Parameters[4].Value.GetWideString;
 end;
 
-function TServerMethodsClient.ConsultaEndereco(UF: string; Cidade: string; Endereco: string; var DadosArmazenados: Boolean; AtualizarDados: Boolean; Formato: string): string;
+function TServerMethodsClient.ConsultaEndereco(UF: string; Localidade: string; Logradouro: string; var DadosArmazenados: Boolean; AtualizarDados: Boolean; Formato: string): string;
 begin
   if FConsultaEnderecoCommand = nil then
   begin
@@ -52,8 +52,8 @@ begin
     FConsultaEnderecoCommand.Prepare;
   end;
   FConsultaEnderecoCommand.Parameters[0].Value.SetWideString(UF);
-  FConsultaEnderecoCommand.Parameters[1].Value.SetWideString(Cidade);
-  FConsultaEnderecoCommand.Parameters[2].Value.SetWideString(Endereco);
+  FConsultaEnderecoCommand.Parameters[1].Value.SetWideString(Localidade);
+  FConsultaEnderecoCommand.Parameters[2].Value.SetWideString(Logradouro);
   FConsultaEnderecoCommand.Parameters[3].Value.SetBoolean(DadosArmazenados);
   FConsultaEnderecoCommand.Parameters[4].Value.SetBoolean(AtualizarDados);
   FConsultaEnderecoCommand.Parameters[5].Value.SetWideString(Formato);

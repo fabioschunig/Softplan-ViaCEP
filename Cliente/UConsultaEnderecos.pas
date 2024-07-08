@@ -12,27 +12,25 @@ type
   TfConsultaEnderecos = class(TForm)
     pnFiltros: TPanel;
     rgFormatoResultado: TRadioGroup;
-    pcTipoConsulta: TPageControl;
-    tsCEP: TTabSheet;
-    tsEndereco: TTabSheet;
     pnResultados: TPanel;
-    Label1: TLabel;
-    edCEP: TEdit;
-    Label2: TLabel;
-    edUF: TEdit;
-    edEndereco: TEdit;
-    edCidade: TEdit;
-    Label3: TLabel;
-    Label4: TLabel;
-    bPesquisarCEP: TButton;
-    bPesquisarEndereco: TButton;
     SQLConnection: TSQLConnection;
     mmResultado: TMemo;
+    gbCEP: TGroupBox;
+    bPesquisarCEP: TButton;
+    edCEP: TEdit;
+    gbEndereco: TGroupBox;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    edUF: TEdit;
+    edLogradouro: TEdit;
+    edLocalidade: TEdit;
+    bPesquisarEndereco: TButton;
     procedure bPesquisarCEPClick(Sender: TObject);
     procedure bPesquisarEnderecoClick(Sender: TObject);
   private
     procedure ConsultaPorCEP(const CEP: String);
-    procedure ConsultaPorEndereco(const UF, Cidade, Endereco: String);
+    procedure ConsultaPorEndereco(const UF, Localidade, Logradouro: String);
     function FormatoResposta: string;
     function ConfirmaAtualizacaoDados: boolean;
   end;
@@ -53,7 +51,7 @@ end;
 
 procedure TfConsultaEnderecos.bPesquisarEnderecoClick(Sender: TObject);
 begin
-  ConsultaPorEndereco(edUF.Text, edCidade.Text, edEndereco.Text);
+  ConsultaPorEndereco(edUF.Text, edLocalidade.Text, edLogradouro.Text);
 end;
 
 procedure TfConsultaEnderecos.ConsultaPorCEP(const CEP: String);
@@ -61,6 +59,7 @@ var
   DSClient: TServerMethodsClient;
   bDadosArmazenados: boolean;
 begin
+  SQLConnection.Connected := true;
   DSClient := TServerMethodsClient.Create(SQLConnection.DBXConnection);
   try
     mmResultado.Lines.Text := DSClient.ConsultaCEP(CEP, bDadosArmazenados,
@@ -76,21 +75,22 @@ begin
   end;
 end;
 
-procedure TfConsultaEnderecos.ConsultaPorEndereco(const UF, Cidade,
-  Endereco: String);
+procedure TfConsultaEnderecos.ConsultaPorEndereco(const UF, Localidade,
+  Logradouro: String);
 var
   DSClient: TServerMethodsClient;
   bDadosArmazenados: boolean;
 begin
+  SQLConnection.Connected := true;
   DSClient := TServerMethodsClient.Create(SQLConnection.DBXConnection);
   try
-    mmResultado.Lines.Text := DSClient.ConsultaEndereco(UF, Cidade, Endereco,
-      bDadosArmazenados, false, FormatoResposta);
+    mmResultado.Lines.Text := DSClient.ConsultaEndereco(UF, Localidade,
+      Logradouro, bDadosArmazenados, false, FormatoResposta);
 
     if bDadosArmazenados and ConfirmaAtualizacaoDados then
     begin
-      mmResultado.Lines.Text := DSClient.ConsultaEndereco(UF, Cidade, Endereco,
-        bDadosArmazenados, true, FormatoResposta);
+      mmResultado.Lines.Text := DSClient.ConsultaEndereco(UF, Localidade,
+        Logradouro, bDadosArmazenados, true, FormatoResposta);
     end;
   finally
     DSClient.Free;

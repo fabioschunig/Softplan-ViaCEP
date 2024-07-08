@@ -31,93 +31,87 @@ object fConsultaEnderecos: TfConsultaEnderecos
         'XML')
       TabOrder = 0
     end
-    object pcTipoConsulta: TPageControl
+    object gbCEP: TGroupBox
       Left = 167
-      Top = 10
-      Width = 602
+      Top = 8
+      Width = 185
       Height = 113
-      ActivePage = tsCEP
+      Caption = ' Consulta por CEP '
       TabOrder = 1
-      object tsCEP: TTabSheet
-        Caption = 'Consultar por CEP'
-        object Label1: TLabel
-          Left = 64
-          Top = 31
-          Width = 24
-          Height = 15
-          Caption = 'CEP:'
-        end
-        object edCEP: TEdit
-          Left = 96
-          Top = 27
-          Width = 129
-          Height = 23
-          TabOrder = 0
-        end
-        object bPesquisarCEP: TButton
-          Left = 500
-          Top = 16
-          Width = 89
-          Height = 48
-          Caption = 'Pesquisar'
-          TabOrder = 1
-          OnClick = bPesquisarCEPClick
-        end
+      object bPesquisarCEP: TButton
+        Left = 24
+        Top = 64
+        Width = 137
+        Height = 34
+        Caption = 'Pesquisar'
+        TabOrder = 1
+        OnClick = bPesquisarCEPClick
       end
-      object tsEndereco: TTabSheet
-        Caption = 'Consultar por Endere'#231'o'
-        ImageIndex = 1
-        object Label2: TLabel
-          Left = 43
-          Top = 23
-          Width = 17
-          Height = 15
-          Caption = 'UF:'
-        end
-        object Label3: TLabel
-          Left = 168
-          Top = 23
-          Width = 40
-          Height = 15
-          Caption = 'Cidade:'
-        end
-        object Label4: TLabel
-          Left = 8
-          Top = 52
-          Width = 52
-          Height = 15
-          Caption = 'Endere'#231'o:'
-        end
-        object edUF: TEdit
-          Left = 80
-          Top = 19
-          Width = 57
-          Height = 23
-          TabOrder = 0
-        end
-        object edEndereco: TEdit
-          Left = 80
-          Top = 48
-          Width = 393
-          Height = 23
-          TabOrder = 1
-        end
-        object edCidade: TEdit
-          Left = 216
-          Top = 19
-          Width = 257
-          Height = 23
-          TabOrder = 2
-        end
-        object bPesquisarEndereco: TButton
-          Left = 500
-          Top = 16
-          Width = 89
-          Height = 48
-          Caption = 'Pesquisar'
-          TabOrder = 3
-          OnClick = bPesquisarEnderecoClick
-        end
+      object edCEP: TEdit
+        Left = 24
+        Top = 29
+        Width = 137
+        Height = 23
+        TabOrder = 0
+      end
+    end
+    object gbEndereco: TGroupBox
+      Left = 358
+      Top = 8
+      Width = 489
+      Height = 113
+      Caption = ' Consulta por Endere'#231'o '
+      TabOrder = 2
+      object Label2: TLabel
+        Left = 56
+        Top = 23
+        Width = 17
+        Height = 15
+        Caption = 'UF:'
+      end
+      object Label3: TLabel
+        Left = 33
+        Top = 55
+        Width = 40
+        Height = 15
+        Caption = 'Cidade:'
+      end
+      object Label4: TLabel
+        Left = 21
+        Top = 87
+        Width = 52
+        Height = 15
+        Caption = 'Endere'#231'o:'
+      end
+      object edUF: TEdit
+        Left = 80
+        Top = 19
+        Width = 57
+        Height = 23
+        TabOrder = 0
+      end
+      object edLogradouro: TEdit
+        Left = 80
+        Top = 83
+        Width = 217
+        Height = 23
+        TabOrder = 2
+      end
+      object edLocalidade: TEdit
+        Left = 80
+        Top = 51
+        Width = 217
+        Height = 23
+        TabOrder = 1
+      end
+      object bPesquisarEndereco: TButton
+        Left = 311
+        Top = 29
+        Width = 102
+        Height = 67
+        Caption = 'Pesquisar'
+        TabOrder = 3
+        OnClick = bPesquisarEnderecoClick
       end
     end
   end
@@ -150,7 +144,6 @@ object fConsultaEnderecos: TfConsultaEnderecos
         'DriverAssemblyLoader=Borland.Data.TDBXClientDriverLoader,Borland' +
         '.Data.DbxClientDriver,Version=24.0.0.0,Culture=neutral,PublicKey' +
         'Token=91d62ebb5b0d1b1b')
-    Connected = True
     Left = 48
     Top = 193
     UniqueId = '{241E0DB2-A8AC-4827-BC49-454BB0C5F24E}'
