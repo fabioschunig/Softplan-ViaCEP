@@ -19,8 +19,6 @@ object fConsultaEnderecos: TfConsultaEnderecos
     Height = 129
     Align = alTop
     TabOrder = 0
-    ExplicitLeft = 72
-    ExplicitTop = 8
     object rgFormatoResultado: TRadioGroup
       Left = 16
       Top = 8
@@ -130,7 +128,6 @@ object fConsultaEnderecos: TfConsultaEnderecos
     Height = 432
     Align = alClient
     TabOrder = 1
-    ExplicitTop = 127
     object mmResultado: TMemo
       Left = 1
       Top = 1
@@ -138,10 +135,6 @@ object fConsultaEnderecos: TfConsultaEnderecos
       Height = 430
       Align = alClient
       TabOrder = 0
-      ExplicitLeft = 416
-      ExplicitTop = 216
-      ExplicitWidth = 185
-      ExplicitHeight = 89
     end
   end
   object SQLConnection: TSQLConnection
