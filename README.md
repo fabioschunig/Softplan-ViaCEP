@@ -37,3 +37,37 @@ Softplan - Consulta de endereços e CEP
 
 - Os resultados são formatados e apresentam a data da consulta
 - O usuário pode escolher repetir a consulta atualizando os dados quando já existir na base de dados
+
+<br>
+
+## Arquitetura de desenvolvimento
+
+### Onion Architecture e DDD
+- Utilizada [Onion Architecture](https://vitormoschetti.medium.com/onion-architecture-defini%C3%A7%C3%A3o-camadas-e-benef%C3%ADcios-551f460c3b2c) para separar o desenvolvimento das classes
+- Utilizado práticas de [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) (Domain-Driven Design), separando entre classes de domínio, aplicação e infraestrutura
+    - 1 [Domínio] (Servidor/src/Domain)
+    - 2 [Aplicação] (Servidor/src/Application)
+    - 3 [Infrastrutura] (Servidor/src/Infra)
+- Dessa forma, caso alguma seja necessário alterar alguma tecnologia (Indy, por exemplo), terá impacto apenas na camada de Infra
+
+### Clean Code
+- Utilizado técnicas de Clean Code na maior parte do código
+
+### SOLID e Design Patterns
+- Utilizado práticas de SOLID nas classes do Servidor e do componente
+- Utilizada injeção de dependência
+- Utilizados padrões de projeto como Builder e Template Method
+
+### POO
+- Código fonte altamento focado em POO, fazendo conversão dos resultados e hidratação para instâncias das classes
+
+### JSON e XML
+- Criadas classes para fazer a conversão dos resultados de JSON e XML para modelos do domínio do sistema
+
+### Interfaces
+- Estrutura de classes do Servidor focada em interfaces
+
+### Criação de Componentes
+- Criado um componente específico para consulta ao site ViaCEP na package `dclBuscaEnderecoCEP`
+
+<br>
