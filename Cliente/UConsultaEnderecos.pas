@@ -28,6 +28,7 @@ type
     bPesquisarEndereco: TButton;
     procedure bPesquisarCEPClick(Sender: TObject);
     procedure bPesquisarEnderecoClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     procedure ConsultaPorCEP(const CEP: String);
     procedure ConsultaPorEndereco(const UF, Localidade, Logradouro: String);
@@ -59,7 +60,6 @@ var
   DSClient: TServerMethodsClient;
   bDadosArmazenados: boolean;
 begin
-  SQLConnection.Connected := true;
   DSClient := TServerMethodsClient.Create(SQLConnection.DBXConnection);
   try
     mmResultado.Lines.Text := DSClient.ConsultaCEP(CEP, bDadosArmazenados,
@@ -81,7 +81,6 @@ var
   DSClient: TServerMethodsClient;
   bDadosArmazenados: boolean;
 begin
-  SQLConnection.Connected := true;
   DSClient := TServerMethodsClient.Create(SQLConnection.DBXConnection);
   try
     mmResultado.Lines.Text := DSClient.ConsultaEndereco(UF, Localidade,
@@ -102,6 +101,16 @@ begin
   result := 'xml';
   if rgFormatoResultado.ItemIndex = 0 then
     result := 'json';
+end;
+
+procedure TfConsultaEnderecos.FormCreate(Sender: TObject);
+begin
+  try
+    SQLConnection.Connected := true;
+  except
+    ShowMessage('Não foi possível conectar ao servidor de aplicação');
+    Application.Terminate;
+  end;
 end;
 
 function TfConsultaEnderecos.ConfirmaAtualizacaoDados: boolean;

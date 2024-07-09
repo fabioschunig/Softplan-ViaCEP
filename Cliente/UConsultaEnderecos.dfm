@@ -11,6 +11,7 @@ object fConsultaEnderecos: TfConsultaEnderecos
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
   object pnFiltros: TPanel
     Left = 0
@@ -128,6 +129,7 @@ object fConsultaEnderecos: TfConsultaEnderecos
       Width = 782
       Height = 430
       Align = alClient
+      ScrollBars = ssBoth
       TabOrder = 0
     end
   end
