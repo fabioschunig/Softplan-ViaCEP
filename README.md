@@ -26,7 +26,7 @@ Softplan - Consulta de endereços e CEP
 - Por comodidade, foi utilizada uma base de dados `SQLite`, que é criada automaticamente ao subir o `Servidor`
 - Abrir o executável `Servidor`
 - Abrir o executável `Cliente`
-- Na tela pode-se escolher se a consulta será feita via JSON ou XML
+- Na tela do cliente pode-se escolher se a consulta será feita via JSON ou XML
 - O usuário tem a opção de consultar pelo CEP:
 
 ![Consulta CEP](/img/pesquisa-cep.png "Consulta de CEP")
@@ -36,7 +36,7 @@ Softplan - Consulta de endereços e CEP
 ![Consulta Endereço](/img/pesquisa-endereco.png "Consulta de endereços")
 
 - Os resultados são formatados e apresentam a data da consulta
-- O usuário pode escolher repetir a consulta atualizando os dados quando já existir na base de dados
+- O usuário pode escolher repetir a consulta, atualizando os dados quando já estiverem armazenados na base de dados
 
 <br>
 
@@ -48,7 +48,7 @@ Softplan - Consulta de endereços e CEP
     - 1 [Domínio] (Servidor/src/Domain)
     - 2 [Aplicação] (Servidor/src/Application)
     - 3 [Infrastrutura] (Servidor/src/Infra)
-- Dessa forma, caso alguma seja necessário alterar alguma tecnologia (Indy, por exemplo), terá impacto apenas na camada de Infra
+- Dessa forma, caso seja necessário alterar alguma tecnologia (Indy, por exemplo), terá impacto apenas na camada de Infra
 
 ### Clean Code
 - Utilizado técnicas de Clean Code na maior parte do código
