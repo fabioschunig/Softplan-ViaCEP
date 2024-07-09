@@ -52,6 +52,13 @@ begin
   if AtualizarDados or (not DadosArmazenados) then
   begin
     aCEP := aConsulta.ConsultarSitePorCEP(aFiltros);
+
+    if aConsulta.Erro then
+    begin
+      result := aConsulta.MensagemErro;
+      exit;
+    end;
+
     repo.Salvar(aCEP);
   end;
 
@@ -86,6 +93,12 @@ begin
   if AtualizarDados or (not DadosArmazenados) then
   begin
     listaCEP := aConsulta.ConsultarSitePorEndereco(aFiltros);
+
+    if aConsulta.Erro then
+    begin
+      result := aConsulta.MensagemErro;
+      exit;
+    end;
 
     for iCont := 0 to length(listaCEP) - 1 do
     begin

@@ -11,7 +11,13 @@ uses
 type
   TConsultaJSONIndy = class(TInterfacedObject, IConsultaInterface)
   private
+    FbErro: boolean;
+    FsMensagemErro: String;
+
     FBuscaEnderecoCEP: TBuscaEnderecoCEP;
+
+    function getErro: boolean;
+    function getMensagemErro: String;
   public
     constructor Create;
     destructor Destroy; override;
@@ -39,12 +45,32 @@ begin
   inherited;
 end;
 
+function TConsultaJSONIndy.getErro: boolean;
+begin
+  result := FbErro;
+end;
+
+function TConsultaJSONIndy.getMensagemErro: String;
+begin
+  result := FsMensagemErro;
+end;
+
 function TConsultaJSONIndy.ConsultarSitePorCEP
   (aFiltros: IFiltrosConsultaInterface): ICEPInterface;
 var
   sRetorno: string;
 begin
+  result := nil;
+
   sRetorno := FBuscaEnderecoCEP.BuscarPorCEP(aFiltros.CEP);
+
+  if FBuscaEnderecoCEP.Erro then
+  begin
+    FbErro := True;
+    FsMensagemErro := sRetorno;
+
+    exit;
+  end;
 
   result := TCEPParserJSON.ParseCEP(sRetorno);
 end;
@@ -54,8 +80,18 @@ function TConsultaJSONIndy.ConsultarSitePorEndereco
 var
   sRetorno: string;
 begin
+  result := nil;
+
   sRetorno := FBuscaEnderecoCEP.BuscarPorEndereco(aFiltros.UF,
     aFiltros.Localidade, aFiltros.Logradouro);
+
+  if FBuscaEnderecoCEP.Erro then
+  begin
+    FbErro := True;
+    FsMensagemErro := sRetorno;
+
+    exit;
+  end;
 
   result := TCEPParserJSON.ParseEnderecos(sRetorno);
 end;
