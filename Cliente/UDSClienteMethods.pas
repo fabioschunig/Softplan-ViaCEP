@@ -1,7 +1,7 @@
 //
 // Created by the DataSnap proxy generator.
-// 07/07/2024 20:34:54
-// 
+// 08/07/2024 17:03:18
+//
 
 unit UDSClienteMethods;
 
@@ -18,13 +18,13 @@ type
     constructor Create(ADBXConnection: TDBXConnection); overload;
     constructor Create(ADBXConnection: TDBXConnection; AInstanceOwner: Boolean); overload;
     destructor Destroy; override;
-    function ConsultaCEP(CEP: string): string;
-    function ConsultaEndereco(UF: string; Cidade: string; Endereco: string): string;
+    function ConsultaCEP(CEP: string; var DadosArmazenados: Boolean; AtualizarDados: Boolean; Formato: string): string;
+    function ConsultaEndereco(UF: string; Localidade: string; Logradouro: string; var DadosArmazenados: Boolean; AtualizarDados: Boolean; Formato: string): string;
   end;
 
 implementation
 
-function TServerMethodsClient.ConsultaCEP(CEP: string): string;
+function TServerMethodsClient.ConsultaCEP(CEP: string; var DadosArmazenados: Boolean; AtualizarDados: Boolean; Formato: string): string;
 begin
   if FConsultaCEPCommand = nil then
   begin
@@ -34,11 +34,15 @@ begin
     FConsultaCEPCommand.Prepare;
   end;
   FConsultaCEPCommand.Parameters[0].Value.SetWideString(CEP);
+  FConsultaCEPCommand.Parameters[1].Value.SetBoolean(DadosArmazenados);
+  FConsultaCEPCommand.Parameters[2].Value.SetBoolean(AtualizarDados);
+  FConsultaCEPCommand.Parameters[3].Value.SetWideString(Formato);
   FConsultaCEPCommand.ExecuteUpdate;
-  Result := FConsultaCEPCommand.Parameters[1].Value.GetWideString;
+  DadosArmazenados := FConsultaCEPCommand.Parameters[1].Value.GetBoolean;
+  Result := FConsultaCEPCommand.Parameters[4].Value.GetWideString;
 end;
 
-function TServerMethodsClient.ConsultaEndereco(UF: string; Cidade: string; Endereco: string): string;
+function TServerMethodsClient.ConsultaEndereco(UF: string; Localidade: string; Logradouro: string; var DadosArmazenados: Boolean; AtualizarDados: Boolean; Formato: string): string;
 begin
   if FConsultaEnderecoCommand = nil then
   begin
@@ -48,10 +52,14 @@ begin
     FConsultaEnderecoCommand.Prepare;
   end;
   FConsultaEnderecoCommand.Parameters[0].Value.SetWideString(UF);
-  FConsultaEnderecoCommand.Parameters[1].Value.SetWideString(Cidade);
-  FConsultaEnderecoCommand.Parameters[2].Value.SetWideString(Endereco);
+  FConsultaEnderecoCommand.Parameters[1].Value.SetWideString(Localidade);
+  FConsultaEnderecoCommand.Parameters[2].Value.SetWideString(Logradouro);
+  FConsultaEnderecoCommand.Parameters[3].Value.SetBoolean(DadosArmazenados);
+  FConsultaEnderecoCommand.Parameters[4].Value.SetBoolean(AtualizarDados);
+  FConsultaEnderecoCommand.Parameters[5].Value.SetWideString(Formato);
   FConsultaEnderecoCommand.ExecuteUpdate;
-  Result := FConsultaEnderecoCommand.Parameters[3].Value.GetWideString;
+  DadosArmazenados := FConsultaEnderecoCommand.Parameters[3].Value.GetBoolean;
+  Result := FConsultaEnderecoCommand.Parameters[6].Value.GetWideString;
 end;
 
 constructor TServerMethodsClient.Create(ADBXConnection: TDBXConnection);
@@ -72,3 +80,4 @@ begin
 end;
 
 end.
+

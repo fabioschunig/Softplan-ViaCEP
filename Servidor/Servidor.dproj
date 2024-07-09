@@ -128,6 +128,24 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="UServerMethods.pas"/>
+        <DCCReference Include="src\Domain\UCEP.Model.pas"/>
+        <DCCReference Include="src\Domain\UCEP.Repository.Intf.pas"/>
+        <DCCReference Include="UDataModule.pas">
+            <Form>fDataModule</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="src\Infra\UCEP.Repository.FireDAC.pas"/>
+        <DCCReference Include="src\Domain\UCEP.Intf.pas"/>
+        <DCCReference Include="src\Application\UConsulta.Intf.pas"/>
+        <DCCReference Include="src\Infra\UConsulta.Builder.Indy.pas"/>
+        <DCCReference Include="src\Infra\UConsulta.XML.Indy.pas"/>
+        <DCCReference Include="src\Infra\UConsulta.JSON.Indy.pas"/>
+        <DCCReference Include="src\Application\UFiltros.Consulta.Intf.pas"/>
+        <DCCReference Include="src\Application\UFiltros.Consulta.CEP.pas"/>
+        <DCCReference Include="src\Application\UFiltros.Consulta.Endereco.pas"/>
+        <DCCReference Include="src\Domain\UCEP.Parser.XML.pas"/>
+        <DCCReference Include="src\Domain\UCEP.Parser.JSON.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
