@@ -162,14 +162,17 @@ begin
 end;
 
 function TBuscaEnderecoCEP.BuscarPorCEP(const CEP: string): string;
+var
+  sCEP: string;
 begin
   FbErro := false;
+  sCEP := Trim(CEP);
 
-  result := ValidarCEP(CEP);
+  result := ValidarCEP(sCEP);
   if FbErro then
     Exit;
 
-  result := Buscar(CEP);
+  result := Buscar(sCEP);
 end;
 
 function TBuscaEnderecoCEP.BuscarPorEndereco(const UF, Cidade,
