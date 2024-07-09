@@ -106,6 +106,12 @@ begin
     end;
   end;
 
+  if length(listaCEP) = 0 then
+  begin
+    result := 'Não foram encontrados endereços para os filtros informados';
+    exit;
+  end;
+
   for iCont := 0 to length(listaCEP) - 1 do
   begin
     result := result + listaCEP[iCont].FormataRegistro + sLineBreak;

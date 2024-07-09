@@ -28,7 +28,7 @@ type
 
     function ValidarCEP(const CEP: string): string;
     function ValidarEndereco(const UF, Cidade, Endereco: string): string;
-    function ErroRetorno(const Codigo: integer; const Texto: string): boolean;
+    function ErroRetorno(const Texto: string): boolean;
 
     function SufixoFormato: string;
     function Buscar(const Filtro: string): string;
@@ -115,11 +115,9 @@ begin
     FbErro := True;
 end;
 
-function TBuscaEnderecoCEP.ErroRetorno(const Codigo: integer;
-  const Texto: string): boolean;
+function TBuscaEnderecoCEP.ErroRetorno(const Texto: string): boolean;
 begin
-  result := (Codigo <> 200) or
-    (Texto.Contains('erro') and Texto.Contains('true'));
+  result := Texto.Contains('erro') and Texto.Contains('true');
 end;
 
 function TBuscaEnderecoCEP.Buscar(const Filtro: string): string;
@@ -128,6 +126,7 @@ const
 var
   sURL: string;
   aStream: TStringStream;
+  sTextoRetorno: string;
 begin
   aStream := TStringStream.Create;
 
@@ -136,8 +135,23 @@ begin
   try
     try
       FIdHTTP.Get(sURL, aStream);
-      FbErro := ErroRetorno(FIdHTTP.ResponseCode, aStream.DataString);
-      result := UTF8ToString(AnsiString(aStream.DataString));
+      sTextoRetorno := UTF8ToString(AnsiString(aStream.DataString));
+
+      if (FIdHTTP.ResponseCode <> 200) then
+      begin
+        FbErro := true;
+        result := sTextoRetorno;
+        exit;
+      end;
+
+      if ErroRetorno(sTextoRetorno) then
+      begin
+        FbErro := true;
+        result := 'Dados não encontrados no site';
+        exit;
+      end;
+
+      result := sTextoRetorno;
     except
       FbErro := True;
       result := ExceptObject.ToString;
