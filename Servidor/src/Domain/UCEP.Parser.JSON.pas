@@ -3,6 +3,7 @@ unit UCEP.Parser.JSON;
 interface
 
 uses
+  System.SysUtils,
   System.JSON, System.Generics.Collections,
   UCEP.Intf, UCEP.Model;
 
@@ -30,7 +31,8 @@ begin
     JSON.FindValue('complemento').Value,
     JSON.FindValue('bairro').Value,
     JSON.FindValue('localidade').Value,
-    JSON.FindValue('uf').Value
+    JSON.FindValue('uf').Value,
+    NOW
   );
 
   result := aCEP;

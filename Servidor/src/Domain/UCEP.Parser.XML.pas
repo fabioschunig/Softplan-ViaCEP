@@ -3,6 +3,7 @@ unit UCEP.Parser.XML;
 interface
 
 uses
+  System.SysUtils,
   XMLIntf, XMLDoc,
   UCEP.Intf, UCEP.Model;
 
@@ -30,7 +31,8 @@ begin
     node.ChildNodes.FindNode('complemento').NodeValue,
     node.ChildNodes.FindNode('bairro').NodeValue,
     node.ChildNodes.FindNode('localidade').NodeValue,
-    node.ChildNodes.FindNode('uf').NodeValue
+    node.ChildNodes.FindNode('uf').NodeValue,
+    NOW
   );
 
   result := aCEP;

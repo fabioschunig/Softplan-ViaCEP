@@ -14,6 +14,7 @@ type
     FsBairro: string;
     FsLocalidade: string;
     FsUF: string;
+    FdData: TDateTime;
 
     function getCEP: string;
     function getLogradouro: string;
@@ -21,6 +22,7 @@ type
     function getBairro: string;
     function getLocalidade: string;
     function getUF: string;
+    function getData: TDateTime;
 
     procedure setCEP(CEP: String);
     procedure setLogradouro(Logradouro: String);
@@ -28,9 +30,10 @@ type
     procedure setBairro(Bairro: String);
     procedure setLocalidade(Localidade: String);
     procedure setUF(UF: String);
+    procedure setData(Data: TDateTime);
 
     procedure Hydrate(const CEP, Logradouro, Complemento, Bairro, Localidade,
-      UF: String);
+      UF: String; Data: TDateTime);
 
     function FormataRegistro: String;
   end;
@@ -72,9 +75,14 @@ begin
   result := FsUF;
 end;
 
+function TCEPModel.getData: TDateTime;
+begin
+  result := FdData;
+end;
+
 procedure TCEPModel.setCEP(CEP: String);
 begin
-  FsCEP := CEP;
+  FsCEP := StringReplace(CEP, '-', '', [rfReplaceAll]);
 end;
 
 procedure TCEPModel.setLogradouro(Logradouro: String);
@@ -102,8 +110,13 @@ begin
   FsUF := UF;
 end;
 
+procedure TCEPModel.setData(Data: TDateTime);
+begin
+  FdData := Data;
+end;
+
 procedure TCEPModel.Hydrate(const CEP, Logradouro, Complemento, Bairro,
-  Localidade, UF: String);
+  Localidade, UF: String; Data: TDateTime);
 begin
   setCEP(CEP);
   setLogradouro(Logradouro);
@@ -111,6 +124,7 @@ begin
   setBairro(Bairro);
   setLocalidade(Localidade);
   setUF(UF);
+  setData(Data);
 end;
 
 function TCEPModel.FormataRegistro: String;
@@ -119,8 +133,10 @@ begin
     'CEP: %s ' + sLineBreak +
     'Logradouro: %s - %s ' + sLineBreak +
     'Bairro: %s ' + sLineBreak +
-    'Localidade / UF: %s / %s ' + sLineBreak,
-    [FsCEP, FsLogradouro, FsComplemento, FsBairro, FsLocalidade, FsUF]);
+    'Localidade / UF: %s / %s ' + sLineBreak +
+    'Última atualização: %s ' + sLineBreak,
+    [FsCEP, FsLogradouro, FsComplemento, FsBairro, FsLocalidade, FsUF,
+     FormatDatetime('dd/mm/yyyy - hh:nn', FdData)]);
 end;
 
 end.

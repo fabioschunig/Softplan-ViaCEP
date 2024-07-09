@@ -11,6 +11,7 @@ type
     function getBairro: string;
     function getLocalidade: string;
     function getUF: string;
+    function getData: TDateTime;
 
     procedure setCEP(CEP: String);
     procedure setLogradouro(Logradouro: String);
@@ -18,6 +19,7 @@ type
     procedure setBairro(Bairro: String);
     procedure setLocalidade(Localidade: String);
     procedure setUF(UF: String);
+    procedure setData(Data: TDateTime);
 
     property CEP: string read getCEP write setCEP;
     property Logradouro: string read getLogradouro write setLogradouro;
@@ -25,9 +27,10 @@ type
     property Bairro: string read getBairro write setBairro;
     property Localidade: string read getLocalidade write setLocalidade;
     property UF: string read getUF write setUF;
+    property Data: TDateTime read getData write setData;
 
     procedure Hydrate(const CEP, Logradouro, Complemento, Bairro, Localidade,
-      UF: String);
+      UF: String; Data: TDateTime);
 
     function FormataRegistro: String;
   end;

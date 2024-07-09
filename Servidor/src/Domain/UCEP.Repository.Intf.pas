@@ -9,7 +9,7 @@ type
   ICEPRepository = interface
     ['{FD477C36-4DB3-4897-A4E5-35C855C52825}']
 
-    function Adicionar(aCEP: ICEPInterface): boolean;
+    function Salvar(aCEP: ICEPInterface): boolean;
     function BuscarPorCEP(const CEP: String; var Encontrou: boolean)
       : ICEPInterface;
     function BuscarPorEndereco(const UF, Localidade, Logradouro: String;
