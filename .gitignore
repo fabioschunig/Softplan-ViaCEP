@@ -65,6 +65,9 @@ __recovery/
 # DUnitX
 Package BuscaEnderecoCEP/Win32/*
 
+# Database
+database.sqlite
+
 # Castalia statistics file (since XE7 Castalia is distributed with Delphi)
 *.stat
 
