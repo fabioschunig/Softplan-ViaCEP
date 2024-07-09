@@ -3,7 +3,7 @@ unit UCEP.Parser.XML;
 interface
 
 uses
-  System.SysUtils,
+  System.SysUtils, System.Variants,
   XMLIntf, XMLDoc,
   UCEP.Intf, UCEP.Model;
 
@@ -27,11 +27,11 @@ begin
   aCEP := TCEPModel.Create;
   aCEP.Hydrate(
     node.ChildNodes.FindNode('cep').NodeValue,
-    node.ChildNodes.FindNode('logradouro').NodeValue,
-    node.ChildNodes.FindNode('complemento').NodeValue,
-    node.ChildNodes.FindNode('bairro').NodeValue,
-    node.ChildNodes.FindNode('localidade').NodeValue,
-    node.ChildNodes.FindNode('uf').NodeValue,
+    varToStr(node.ChildNodes.FindNode('logradouro').NodeValue),
+    varToStr(node.ChildNodes.FindNode('complemento').NodeValue),
+    varToStr(node.ChildNodes.FindNode('bairro').NodeValue),
+    varToStr(node.ChildNodes.FindNode('localidade').NodeValue),
+    varToStr(node.ChildNodes.FindNode('uf').NodeValue),
     NOW
   );
 
