@@ -27,7 +27,7 @@
 #
 
 # Delphi compiler-generated binaries (safe to delete)
-*.exe
+# *.exe
 *.dll
 *.bpl
 *.bpi
@@ -63,7 +63,7 @@ __recovery/
 *.~*
 
 # DUnitX
-Package BuscaEnderecoCEP/Win32/*
+Package BuscaEnderecoCEP/Win32/Debug/*.xml
 
 # Database
 database.sqlite
